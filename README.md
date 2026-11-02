@@ -8,13 +8,13 @@ The target user is the person running the application on their own device. RETOM
 
 ## Current status
 
-The project is at its initial application-shell stage. The React application renders, and the development, linting, production-build, and test foundations are configured. Activity management, progress tracking, local persistence, and time-based resumption are planned but not implemented yet.
+The project is at its initial application-shell stage. The React application renders, and the development, linting, production-build, test, Activity domain model, and versioned local database foundations are configured. Activity management flows, persistence operations, progress tracking, and time-based resumption are planned but not implemented yet.
 
 ## Technology stack
 
 - React 19 and TypeScript 6
 - Vite 8
-- Dexie 4 and Zod 4 for planned local data and validation
+- Dexie 4 and Zod 4 for local data foundations and validation
 - Vitest 4, jsdom, and React Testing Library
 - ESLint 10
 - Lucide React
