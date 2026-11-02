@@ -20,3 +20,13 @@
 - Keep documentation updated.
 - Make small, meaningful changes.
 - Never create commits without explicit confirmation from the project owner.
+
+## Incremental Git workflow
+
+- Review, validate, and record each completed unit of work before starting another.
+- Keep commits small, coherent, and authentic.
+- Do not accumulate independent implementations without recording them.
+- Explicitly review staged files before every commit.
+- Never fabricate commits, dates, or activity.
+- Respect explicit owner authorization for commits and pushes.
+- Never push without explicit owner authorization.
