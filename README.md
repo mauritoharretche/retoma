@@ -8,7 +8,9 @@ The target user is the person running the application on their own device. RETOM
 
 ## Current status
 
-The project is at its initial application-shell stage. The React application renders, and the development, linting, production-build, test, Activity domain model, and versioned local database foundations are configured. Activity management flows, persistence operations, progress tracking, and time-based resumption are planned but not implemented yet.
+The project is at its initial application-shell stage. The React application renders, and the development, linting, production-build, test, Activity domain model, local database, repository, and application-use-case foundations are configured. Visual activity management flows, progress tracking, and time-based resumption are planned but not implemented yet.
+
+Current local updates use a last-write-wins approach if separate contexts update the same activity at the same time. Conflict detection is not implemented yet.
 
 ## Technology stack
 

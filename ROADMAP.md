@@ -2,11 +2,9 @@
 
 This roadmap describes planned work only. The estimates are forward-looking and do not represent completed work.
 
-## Product foundation — 10 hours
+## Product interface — 5 hours
 
-- Define the activity, project, interest, progress, and next-step domain model (3 hours).
-- Implement local persistence with Dexie and validate input with Zod (4 hours).
-- Build activity creation, editing, archiving, and listing flows (3 hours).
+- Build accessible visual flows for creating, editing, archiving, and listing activities (5 hours).
 
 ## Resumption workflow — 8 hours
 
@@ -38,4 +36,4 @@ This roadmap describes planned work only. The estimates are forward-looking and 
 - Maintain contribution, quality, and privacy guidance (1 hour).
 - Prepare a release checklist and verify build artefacts (2 hours).
 
-**Estimated future work: 38 hours.**
+**Estimated future work: 33 hours.**
