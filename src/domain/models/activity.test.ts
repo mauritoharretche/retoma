@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { activitySchema } from './activity'
+import { activityEditableFieldsSchema, activitySchema } from './activity'
 
 const createActivityInput = () => ({
   id: '9a2b4e6c-3f85-4eaa-9e1d-5e1e675344a1',
@@ -112,6 +112,48 @@ describe('activitySchema', () => {
         ...createActivityInput(),
         createdAt: '2026-11-02T12:00:00.000Z',
         updatedAt: '2026-11-02T13:00:00.000Z',
+      }).success,
+    ).toBe(false)
+  })
+})
+
+describe('activityEditableFieldsSchema', () => {
+  it('accepts editable input without id, status, or dates', () => {
+    expect(
+      activityEditableFieldsSchema.parse({
+        title: 'Learn watercolour painting',
+      }),
+    ).toEqual({ title: 'Learn watercolour painting' })
+  })
+
+  it('normalizes title and resume note', () => {
+    expect(
+      activityEditableFieldsSchema.parse({
+        title: '  Learn watercolour painting  ',
+        resumeNote: '  Practice wet-on-wet skies.  ',
+      }),
+    ).toEqual({
+      title: 'Learn watercolour painting',
+      resumeNote: 'Practice wet-on-wet skies.',
+    })
+  })
+
+  it('rejects empty, whitespace-only, and overlong titles', () => {
+    expect(activityEditableFieldsSchema.safeParse({ title: '' }).success).toBe(false)
+    expect(activityEditableFieldsSchema.safeParse({ title: '   ' }).success).toBe(false)
+    expect(activityEditableFieldsSchema.safeParse({ title: 'a'.repeat(101) }).success).toBe(
+      false,
+    )
+  })
+
+  it('accepts an absent note and rejects an overlong note', () => {
+    expect(activityEditableFieldsSchema.parse({ title: 'Learn watercolour painting' })).toEqual({
+      title: 'Learn watercolour painting',
+    })
+    expect(
+      activityEditableFieldsSchema.safeParse({
+        title: 'Learn watercolour painting',
+        resumeNote: 'a'.repeat(501),
       }).success,
     ).toBe(false)
   })

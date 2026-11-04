@@ -1,8 +1,14 @@
-import { activitySchema, type Activity } from '../models/activity'
+import {
+  activityEditableFieldsSchema,
+  activitySchema,
+  type Activity,
+  type ActivityEditableFields,
+} from '../models/activity'
 
-export type ActivityEditableFields = Pick<Activity, 'title' | 'resumeNote'>
+export type { ActivityEditableFields } from '../models/activity'
 
-export function createActivity({ title, resumeNote }: ActivityEditableFields): Activity {
+export function createActivity(input: ActivityEditableFields): Activity {
+  const { title, resumeNote } = activityEditableFieldsSchema.parse(input)
   const now = new Date()
 
   return activitySchema.parse({
@@ -17,8 +23,10 @@ export function createActivity({ title, resumeNote }: ActivityEditableFields): A
 
 export function updateActivity(
   activity: Activity,
-  { title, resumeNote }: ActivityEditableFields,
+  input: ActivityEditableFields,
 ): Activity {
+  const { title, resumeNote } = activityEditableFieldsSchema.parse(input)
+
   return activitySchema.parse({
     id: activity.id,
     title,

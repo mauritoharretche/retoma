@@ -1,5 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { activitySchema, type Activity } from '../models/activity'
+import {
+  activityEditableFieldsSchema,
+  activitySchema,
+  type Activity,
+} from '../models/activity'
 import { createActivity, updateActivity } from './activity-lifecycle'
 
 const generatedId = 'c36c7f70-9bbf-47b5-8262-7e8f4aa4c4d0'
@@ -38,10 +42,11 @@ describe('activity lifecycle operations', () => {
     })
 
     it('normalizes the title and resume note', () => {
-      const activity = createActivity({
+      const editableFields = activityEditableFieldsSchema.parse({
         title: '  Learn watercolour painting  ',
         resumeNote: '  Practice wet-on-wet skies.  ',
       })
+      const activity = createActivity(editableFields)
 
       expect(activity.title).toBe('Learn watercolour painting')
       expect(activity.resumeNote).toBe('Practice wet-on-wet skies.')
